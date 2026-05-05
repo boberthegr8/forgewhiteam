@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+
+  /* ── Dark Theme ─────────────────────────────────────── */
+  --color-win-bg:           #0f0f0f;
+  --color-win-surface:      #1a1a1a;
+  --color-win-surface-2:    #222222;
+  --color-win-surface-hover:#252525;
+  --color-win-border:       #2e2e2e;
+  --color-win-border-subtle:#222222;
+
+  /* Orange accent (matches screenshot) */
+  --color-win-accent:       #f97316;
+  --color-win-accent-hover: #ea6100;
+  --color-win-accent-muted: rgba(249,115,22,0.12);
+
+  --color-win-text:         #f5f5f5;
+  --color-win-text-sec:     #9ca3af;
+  --color-win-text-dim:     #6b7280;
+
+  /* Status colours */
+  --color-status-green:     #22c55e;
+  --color-status-red:       #ef4444;
+  --color-status-blue:      #3b82f6;
+  --color-status-yellow:    #f59e0b;
+}
+
+body {
+  background-color: var(--color-win-bg);
+  color: var(--color-win-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  @apply antialiased;
+}
+
+/* ── Scrollbars ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* ── Inputs ──────────────────────────────────────────── */
+.win-input {
+  @apply bg-[#222222] border border-[#3a3a3a] rounded-[6px] px-3 py-[7px] text-sm text-white
+         placeholder:text-[#6b7280]
+         focus:outline-none focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316]/50
+         transition-colors;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.win-btn {
+  @apply px-4 py-[7px] rounded-[6px] text-sm font-semibold transition-all border shadow-sm;
+}
+.win-btn-primary {
+  @apply bg-[#f97316] text-white border-transparent
+         hover:bg-[#ea6100] hover:shadow-[0_0_12px_rgba(249,115,22,0.4)];
+}
+.win-btn-default {
+  @apply bg-[#252525] border-[#3a3a3a] text-white
+         hover:bg-[#2e2e2e] hover:border-[#555];
+}
+
+/* ── Cards ───────────────────────────────────────────── */
+.forge-card {
+  @apply bg-[#1a1a1a] border border-[#2e2e2e] rounded-[8px] shadow-sm;
+}
+
+/* ── Status badges ───────────────────────────────────── */
+.badge-scheduled { @apply bg-[#252525] text-[#9ca3af]; }
+.badge-onroute   { @apply bg-[#1e3a5f] text-[#60a5fa]; }
+.badge-delivered { @apply bg-[#14311f] text-[#22c55e]; }
+.badge-issue     { @apply bg-[#3b1a1a] text-[#ef4444]; }
+.badge-draft     { @apply bg-[#252525] text-[#9ca3af]; }
+.badge-sent      { @apply bg-[#1a2a45] text-[#60a5fa]; }
+.badge-accepted  { @apply bg-[#14311f] text-[#22c55e]; }
+.badge-rejected  { @apply bg-[#3b1a1a] text-[#ef4444]; }
+
+/* ── Drag-over highlight ─────────────────────────────── */
+.drop-zone-active {
+  @apply border-[#f97316] bg-[rgba(249,115,22,0.06)] ring-1 ring-[#f97316]/30;
+}
+
+/* ── Animations ──────────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+.animate-in { animation: slideUp 0.2s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.15s ease-out; }
+
+/* ── Modal overlay ───────────────────────────────────── */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4;
+}
+.modal-box {
+  @apply bg-[#1a1a1a] border border-[#2e2e2e] rounded-[10px] shadow-2xl;
+}
